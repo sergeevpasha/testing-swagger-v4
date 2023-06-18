@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  nginx:
+    container_name: "laravel-test-app_nginx"
+    image: nginx:1.25-alpine
+    tty: true
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d:ro
+      - ./:/var/www:ro
+      - ./docker/logs:/var/log/nginx
+    networks:
+      - default-network
+  php:
+    container_name: "laravel-test-app_php"
+    build:
+      context: ./docker/images/php
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: laravel-test-app/php
+    volumes:
+      - ./:/var/www:consistent
+    networks:
+      - default-network
+  pgsql:
+    container_name: "laravel-test-app_pgsql"
+    image: postgres:15.3-alpine
+    environment:
+      - POSTGRES_USER=web
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=laravel_test_app
+    volumes:
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d/:ro
+      - pgdata:/var/lib/postgresql/data:rw
+    networks:
+      - default-network
+networks:
+  default-network:
+    name: laravel-test-app-default-network
+    driver: bridge
+volumes:
+  pgdata:
+    name: "laravel-test-app_pgdata"

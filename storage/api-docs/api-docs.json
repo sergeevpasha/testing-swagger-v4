@@ -1,0 +1,360 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Test App API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get Products",
+                "description": "Get all Products",
+                "operationId": "f76d601be1e8fc2bf1cfeece1491c9c6",
+                "responses": {
+                    "200": {
+                        "description": "Fetched products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Product ID",
+                                                        "type": "number",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "description": "Product Name",
+                                                        "type": "string",
+                                                        "example": "Product X"
+                                                    },
+                                                    "code": {
+                                                        "description": "Product Code",
+                                                        "type": "string",
+                                                        "example": "PRD-001"
+                                                    },
+                                                    "price": {
+                                                        "description": "Product Price",
+                                                        "type": "number",
+                                                        "example": 109.9
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Create Product",
+                "description": "Store Product",
+                "operationId": "40f2618d76a7dd031ca80e6cc30b5061",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "code",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Product Name",
+                                        "type": "string",
+                                        "example": "Product X"
+                                    },
+                                    "code": {
+                                        "description": "Product Code",
+                                        "type": "string",
+                                        "example": "PRD-001"
+                                    },
+                                    "price": {
+                                        "description": "Product Price",
+                                        "type": "number",
+                                        "example": 109.9
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Product was successfully created."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "description": "Product ID",
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "description": "Product Name",
+                                                    "type": "string",
+                                                    "example": "Product X"
+                                                },
+                                                "code": {
+                                                    "description": "Product Code",
+                                                    "type": "string",
+                                                    "example": "PRD-001"
+                                                },
+                                                "price": {
+                                                    "description": "Product Price",
+                                                    "type": "number",
+                                                    "example": 109.9
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get Product",
+                "description": "Display Product",
+                "operationId": "8ffb3b91517ca985484b8157dbb3ee00",
+                "parameters": [
+                    {
+                        "parameter": "id",
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product Id",
+                        "required": true,
+                        "allowEmptyValue": false,
+                        "allowReserved": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "description": "Product ID",
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "description": "Product Name",
+                                                    "type": "string",
+                                                    "example": "Product X"
+                                                },
+                                                "code": {
+                                                    "description": "Product Code",
+                                                    "type": "string",
+                                                    "example": "PRD-001"
+                                                },
+                                                "price": {
+                                                    "description": "Product Price",
+                                                    "type": "number",
+                                                    "example": 109.9
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Delete Product",
+                "description": "Delete Product",
+                "operationId": "9438cf20b711483072137ec760e1ce0e",
+                "parameters": [
+                    {
+                        "parameter": "id",
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product Id",
+                        "required": true,
+                        "allowEmptyValue": false,
+                        "allowReserved": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Product was successfully deleted."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update Product",
+                "description": "Update Product",
+                "operationId": "1132aadef5571be9931118c67f56fdd9",
+                "parameters": [
+                    {
+                        "parameter": "id",
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product Id",
+                        "required": true,
+                        "allowEmptyValue": false,
+                        "allowReserved": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "code",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Product Name",
+                                        "type": "string",
+                                        "example": "Product X"
+                                    },
+                                    "code": {
+                                        "description": "Product Code",
+                                        "type": "string",
+                                        "example": "PRD-001"
+                                    },
+                                    "price": {
+                                        "description": "Product Price",
+                                        "type": "number",
+                                        "example": 109.9
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Product was successfully updated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

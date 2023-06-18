@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  nginx:
+    ports:
+      - "${DOCKER_NGINX_PORT:-80}:80"
+  pgsql:
+    ports:
+      - ${DOCKER_PGSQL_PORT:-5432}:5433
+    environment:
+      PGPORT: 5433
